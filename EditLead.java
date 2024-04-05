@@ -1,18 +1,21 @@
 package Leads;
 
+import java.awt.RenderingHints.Key;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 
 public class EditLead {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		// To disable the notifications 
 		
 		ChromeOptions options = new ChromeOptions();
@@ -30,22 +33,29 @@ public class EditLead {
 		driver.findElement(By.xpath("//input[@id='password']")).sendKeys("March2016.");
 		driver.findElement(By.xpath("//input[@id='Login']")).click();
 		
-		//click to new lead
+		//click to sales
 		
 		driver.findElement(By.xpath("//div[@class='slds-icon-waffle']")).click();
+		Thread.sleep(3000);
 		driver.findElement(By.xpath("(//button[@class='slds-button'])[2]")).click();
 		driver.findElement(By.xpath("//p[text()='Sales']")).click();
 		
 		//java scrpit to click lead
-		
 		WebElement lead = driver.findElement(By.xpath("(//span[text()='Leads'])[1]"));
 		driver.executeScript("arguments[0].click()", lead);
-		driver.findElement(By.xpath("(//a[@title='kandhapriya'])[1]")).click();
+		Thread.sleep(5000);
+		Actions search=new Actions(driver);
+		search.click(driver.findElement(By.xpath("//button[text()='Search...']"))).perform();
+		Thread.sleep(3000);
+		driver.findElement(By.xpath("//input[@placeholder='Search...']")).sendKeys("kandhapriya"+Keys.ENTER);
+		
 		//javascrpit to click dropdown
 		
-		WebElement dp = driver.findElement(By.xpath("//span[text()='Show more actions']"));
+		WebElement dp = driver.findElement(By.xpath("(//span[text()='Show more actions'])[1]"));
 		driver.executeScript("arguments[0].click()", dp);
-		driver.findElement(By.xpath("//span[text()='Edit']")).click();
+		Thread.sleep(3000);
+		WebElement edit = driver.findElement(By.xpath("//div[text()='Edit']"));
+		driver.executeScript("arguments[0].click()", edit);
 		
 		//Update Information: Change the First Name to 'Ganesh'.
 		driver.findElement(By.xpath("//input[@name='lastName']")).clear();
@@ -61,7 +71,8 @@ public class EditLead {
 		driver.findElement(By.xpath("(//button[text()='Save'])[2]")).click();
 		
 		//Verification: Confirm that the lead's name is updated as 'Ganesh Kumar'.
-		String editname = driver.findElement(By.xpath("//lightning-formatted-name[text()='Mrs.  Ganesh']")).getText();
+		
+		String editname = driver.findElement(By.xpath("(//a[text()='Ganesh']/..)[4]")).getText();
 		System.out.println(" the lead's name is updated as "+editname);
 }
 }
