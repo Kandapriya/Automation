@@ -67,9 +67,10 @@ public class ManageLeadsEmail {
 		driver.findElement(By.xpath("//input[@class='slds-combobox__input slds-input']")).click();
 		WebElement subject = driver.findElement(By.xpath("//lightning-base-combobox-item[@data-value='Email']"));
 		driver.executeScript("arguments[0].click();", subject);
-		WebElement date = driver.findElement(By.xpath("//button[@title='Select a date for Due Date']"));
-		driver.executeScript("arguments[0].click();", date);
-		driver.findElement(By.xpath("(//span[text()='8'])[1]")).click();
+		driver.findElement(By.xpath("(//input[@class='slds-input'])[4]")).click();
+		driver.findElement(By.xpath("(//td[@class='slds-is-today']/following-sibling::td)[1]")).click();
+		//driver.executeScript("arguments[0].click();", date);
+		//driver.findElement(By.xpath("(//span[text()='8'])[1]")).click();
 		driver.findElement(By.xpath("(//span[text()='Save'])[2]")).click();
 		
 		//Send Email
@@ -80,7 +81,11 @@ public class ManageLeadsEmail {
 		driver.findElement(By.xpath("(//input[@aria-describedby='recipientsInputLabel'])[1]")).sendKeys("kpriya@testleaf.com");
 		driver.findElement(By.xpath("//input[@placeholder='Enter Subject...']")).sendKeys("ManageLeads");
 		Thread.sleep(3000);
-		//driver.findElement(By.xpath("//body[@class='cke_editable cke_editable_themed cke_contents_ltr']")).sendKeys("This story covers the steps to log in, create a new lead with specific details, verify lead information, add an email to the to-do list, send an email, and update the email status to 'Completed\r\n");
+		driver.switchTo().frame(0);
+		Thread.sleep(3000);
+		driver.switchTo().frame(0);
+		driver.findElement(By.xpath("//body[@class='cke_editable cke_editable_themed cke_contents_ltr']")).sendKeys("This story covers the steps to update the email status to 'Completed\r\n");
+		driver.switchTo().defaultContent();
 		driver.findElement(By.xpath("//span[text()='Send']")).click();
 		Thread.sleep(3000);
 		
