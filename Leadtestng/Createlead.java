@@ -31,15 +31,13 @@ public class Createlead extends BaseclassLead{
 			
 			driver.findElement(By.xpath("(//span[text()='--None--'])[1]")).click();
 			driver.findElement(By.xpath("//span[text()='Mrs.']")).click();
-			Faker faker = new Faker();
-			 String name = faker.name().firstName();
+			name = faker.name().firstName();
 			driver.findElement(By.xpath("//input[@name='lastName']")).sendKeys(name);
 			System.out.println("The lead name is: "+name);
-			String cname = faker.company().name();
+			cname = faker.company().name();
 			driver.findElement(By.xpath("//input[@name='Company']")).sendKeys(cname);
 			driver.findElement(By.xpath("(//button[text()='Save'])[2]")).click();
 			String leadt = driver.findElement(By.xpath("//slot[@name='primaryField']/..")).getText();
-			
 			if (leadt.contains(name)) {
 				System.out.println(" verifying,the lead's name is displayed: "+leadt);
 			} else {

@@ -13,10 +13,18 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+import com.github.javafaker.Faker;
+
 public class BaseclassLead {
 	
 //globally declare driver	
 public ChromeDriver driver;
+public WebDriverWait wait;
+public Faker faker;
+public static String name;
+public static String cname;
+
+
 	
 	@BeforeMethod
 	public void perconditionslead(){
@@ -26,7 +34,7 @@ public ChromeDriver driver;
 		options.addArguments("--disable-notifications");
 					
 		//lanch chrome 
-					
+		 faker = new Faker();			
 		driver=new ChromeDriver(options);
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
@@ -39,7 +47,7 @@ public ChromeDriver driver;
 		driver.findElement(By.xpath("//input[@id='Login']")).click();
 					
 		//click to sales
-		WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait=new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//div[@class='slds-icon-waffle']"))));
 		driver.findElement(By.xpath("//div[@class='slds-icon-waffle']")).click();
 		try {
@@ -57,6 +65,8 @@ public ChromeDriver driver;
 		WebElement lead = driver.findElement(By.xpath("(//span[text()='Leads'])[1]"));
 		driver.executeScript("arguments[0].click()", lead);	
         }
+	    
+	   
 	
 	   @AfterMethod
        public void postconditionlead() {

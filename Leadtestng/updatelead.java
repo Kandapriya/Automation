@@ -21,29 +21,22 @@ public class updatelead extends BaseclassLead{
 	public void runeditlead() {
 		
 	//java scrpit to click lead
-	//replacing Thread.sleep() with explicit waits
-	   WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
-		WebElement searchedit = driver.findElement(By.xpath("//input[@aria-label='Search Recently Viewed list view.']"));
-		wait.until(ExpectedConditions.visibilityOf(searchedit));
-		Faker faker=new Faker();
-		String name = faker.name().firstName();
-	//	searchedit.sendKeys(name+Keys.ENTER);
+	    WebElement searchedit = driver.findElement(By.xpath("//input[@aria-label='Search Recently Viewed list view.']"));
+	    wait.until(ExpectedConditions.visibilityOf(searchedit));
+		searchedit.sendKeys(name+Keys.ENTER);
 		
         //javascrpit to click dropdown
-		//replacing Thread.sleep() with explicit waits
 		String printeditlead = driver.findElement(By.xpath("(//span[@class='slds-grid slds-grid--align-spread forceInlineEditCell'])[1]/parent::th")).getText();
 		System.out.println("The leadname going to edit/update is :"+printeditlead);
 		WebElement dp = driver.findElement(By.xpath("(//span[text()='Show Actions'])[1]/ancestor::a"));
 		wait.until(ExpectedConditions.visibilityOfAllElements(dp));
 		driver.executeScript("arguments[0].click()", dp);
-		//replacing Thread.sleep() with explicit waits
 		WebElement edit = driver.findElement(By.xpath("//a[@title='Edit']"));
-		
 		driver.executeScript("arguments[0].click()", edit);
 		
 		//Update Information: Change the First Name to 'Ganesh'.
-		
 		driver.findElement(By.xpath("//input[@name='lastName']")).clear();
+		name=faker.name().lastName();
 		driver.findElement(By.xpath("//input[@name='lastName']")).sendKeys(name);
 		
 		//Modify Lead Status: Set the Lead Status to 'Working-Contacted'.
@@ -58,9 +51,7 @@ public class updatelead extends BaseclassLead{
 		//Verification: Confirm that the lead's name is updated as 'Ganesh Kumar'.
 		String verificationMessage = driver.findElement(By.xpath("//span[contains(@class,'toastMessage sld')]")).getText();
 		System.out.println(verificationMessage);
-
-		
-		if (verificationMessage.contains(name)) {
+         if (verificationMessage.contains(name)) {
 			System.out.println(" verifying,the lead's name is displayed:"+verificationMessage);
 		} else {
 			System.out.println(" verifying,the lead's name is  not displayed:");

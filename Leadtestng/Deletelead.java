@@ -22,19 +22,15 @@ public class Deletelead extends BaseclassLead {
 		
         //java scrpit to click lead
 		//replacing Thread.sleep() with explicit waits
-    	WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
+    	
 		WebElement searchedit = driver.findElement(By.xpath("//input[@aria-label='Search Recently Viewed list view.']"));
 		wait.until(ExpectedConditions.visibilityOf(searchedit));
-		Faker faker=new Faker();
-		String dname = faker.name().firstName();
-		//searchedit.sendKeys(dname+Keys.ENTER);
+		searchedit.sendKeys(name+Keys.ENTER);
 		
        //javascrpit to click dropdown
-		//replacing Thread.sleep() with explicit waits
 		WebElement dp = driver.findElement(By.xpath("(//span[text()='Show Actions'])[1]/ancestor::a"));
 		wait.until(ExpectedConditions.visibilityOfAllElements(dp));
 		driver.executeScript("arguments[0].click()", dp);
-		//replacing Thread.sleep() with explicit waits
 		WebElement delete = driver.findElement(By.xpath("//a[@title='Delete']"));
 		driver.executeScript("arguments[0].click()", delete);
 		
