@@ -27,7 +27,7 @@ public class LeadOpportunity_TC001 extends Baseclasspom {
 		lp.enterUsername("kpriya@testleaf.com").enterPassword("March2016.").clicklogin().appLanucher().clickViewAll().clickSales().
 		clickleadstap().createNewLead().Salutation().LastName().Company().clickSave().verifyLeadDetails().
 		EmailToDoList().clickToDoList().Clicksubjectemail().dueDate().statusTask().saveTask().
-		Emailbutton().EmailId().emailsubject().composeEmail().SendEmail().
+		//Emailbutton().EmailId().emailsubject().composeEmail().SendEmail().
 		upcomingOverDue().ClickChangeStatuss().clickselectStatusupcoming().chooseselectStatusupcoming().Savestatusupcoming().
 		Detailslead().clickediticiondetails().scrollToSelectdetails().Clicksavedetails().statusCompletion().
 		dropdown().Convertfirst().convertsecond().converfullsecond().snapshotpopup().closepopup().

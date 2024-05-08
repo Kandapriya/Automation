@@ -434,6 +434,12 @@ public class  NewLeadPage extends Baseclasspom {
 				} catch (StaleElementReferenceException e3) {
 					wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//div[contains(@class,'modal-body')]"))));
 				}
+				try {
+					driver.findElement(By.xpath("//button[@title='Close this window']")).click();
+				} catch (ElementClickInterceptedException e) {
+					WebElement closelead = driver.findElement(By.xpath("//button[@title='Close this window']"));
+					driver.executeScript("arguments[0].click();",closelead);
+				}
 				reportStep("pass", "close pop message is success");
 			} catch (Exception e) {
 				reportStep("fail", "close pop message is not success");

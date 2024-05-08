@@ -75,7 +75,7 @@ public static ExtentReports extent;
 
       		int random = (int) ((Math.random())*999999);
             File src = driver.getScreenshotAs(OutputType.FILE);
-      		File des = new File("./snapshot/img"+random+".png");
+      		File des = new File("./snaplead/img"+random+".png");
       		try {
       			FileUtils.copyFile(src, des);
       		} catch (IOException e) {
