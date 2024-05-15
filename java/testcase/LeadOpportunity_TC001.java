@@ -5,29 +5,29 @@ import java.io.IOException;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import Baseclass.Baseclasspom;
-import pages.LoginPage;
 
-public class LeadOpportunity_TC001 extends Baseclasspom {
+
+
+public class LeadOpportunity_TC001 extends steps.Baseclasspom {
 	
 	
-	@BeforeTest
-	public void setData() {
-		testcasename = "Lead to Opportunity";
-		testcasedescription = "Converting the Lead to opportunity with valid data";
-		author = "Kandhapriya";
-		testcategory = "regression Testing";	
-	}
+//	@BeforeTest
+//	public void setData() {
+//		testcasename = "Lead to Opportunity";
+//		testcasedescription = "Converting the Lead to opportunity with valid data";
+//		author = "Kandhapriya";
+//		testcategory = "regression Testing";	
+//	}
 
   @Test
 	public void Lead() throws IOException {
 		
-		LoginPage lp= new LoginPage();
+		steps.LoginPage lp= new steps.LoginPage();
 		
 		lp.enterUsername("kpriya@testleaf.com").enterPassword("March2016.").clicklogin().appLanucher().clickViewAll().clickSales().
 		clickleadstap().createNewLead().Salutation().LastName().Company().clickSave().verifyLeadDetails().
 		EmailToDoList().clickToDoList().Clicksubjectemail().dueDate().statusTask().saveTask().
-		//Emailbutton().EmailId().emailsubject().composeEmail().SendEmail().
+		Emailbutton().EmailId().emailsubject().composeEmail().SendEmail().
 		upcomingOverDue().ClickChangeStatuss().clickselectStatusupcoming().chooseselectStatusupcoming().Savestatusupcoming().
 		Detailslead().clickediticiondetails().scrollToSelectdetails().Clicksavedetails().statusCompletion().
 		dropdown().Convertfirst().convertsecond().converfullsecond().snapshotpopup().closepopup().
